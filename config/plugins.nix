@@ -5,6 +5,8 @@ let
     "telescope"
     "which-key"
     "trouble"
+    "gitsigns"
+    "intellitab"
   ];
 in {
   imports = [
@@ -14,6 +16,7 @@ in {
     ./lsp.nix
     ./lualine.nix
     ./mini.nix
+    ./noice.nix
     ./treesitter.nix
   ];
 
@@ -24,5 +27,6 @@ in {
 
   extraPlugins = with pkgs.vimPlugins; [
     nvim-web-devicons
+    nui-nvim
   ];
 }
