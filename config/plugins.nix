@@ -3,6 +3,7 @@ let
   plugins = [
     "nix"
     "telescope"
+    "presence-nvim"
     "which-key"
     "trouble"
     "gitsigns"
