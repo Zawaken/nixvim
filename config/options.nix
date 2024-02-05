@@ -26,6 +26,7 @@
 			splitright = true;
 			ignorecase = true;
 			fileencoding = "utf-8";
+      filetype = "on";
 		};
 	};
 }
