@@ -1,32 +1,35 @@
 { pkgs, ... }: {
-	config = {
-		options = {
-			number = true;
-			mouse = "";
-			relativenumber = true;
-			smartindent = true;
-			smartcase = true;
-			backup = false;
-			swapfile = false;
-			undofile = true;
-			updatetime = 300;
-			timeoutlen = 1000;
-			tabstop = 2;
-			shiftwidth = 2;
-			cursorline = false;
-			signcolumn = "yes";
-			wrap = false;
-			foldmethod = "marker";
-			foldmarker = "{{{,}}}";
-			list = true;
-			listchars = "tab:┊»,eol:¬";
-			autoindent = true;
-			clipboard = "unnamedplus";
-			splitbelow = true;
-			splitright = true;
-			ignorecase = true;
-			fileencoding = "utf-8";
+  config = {
+    options = {
+      number = true;
+      relativenumber = true;
+      backup = false;
+      swapfile = false;
+      undofile = true;
+      mouse = "";
+      smartcase = true;
+      updatetime = 300;
+      timeoutlen = 1000;
+      cursorline = false;
+      signcolumn = "yes";
+      wrap = false;
+      foldmethod = "marker";
+      foldmarker = "{{{,}}}";
+      list = true;
+      listchars = "tab:┊»,eol:¬";
+      clipboard = "unnamedplus";
+      splitbelow = true;
+      splitright = true;
+      ignorecase = true;
       filetype = "on";
-		};
-	};
+      hlsearch = true;
+
+      tabstop = 2;
+      shiftwidth = 2;
+      smartindent = true;
+      smarttab = true;
+      autoindent = true;
+      expandtab = true;
+    };
+  };
 }
