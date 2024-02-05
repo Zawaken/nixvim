@@ -54,7 +54,7 @@
               elseif HasWordsBefore() then
                 cmp.complete()
               else
-                vim.cmd[[silent! lua require("intellitab").indent()]]
+                 vim.cmd[[silent! lua require("intellitab").indent()]]
                 -- fallback()
               end
             end, { "i", "s" })
