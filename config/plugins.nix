@@ -29,5 +29,6 @@ in {
   extraPlugins = with pkgs.vimPlugins; [
     nvim-web-devicons
     nui-nvim
+    vim-sleuth
   ];
 }
