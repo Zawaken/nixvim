@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   config = {
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
       backup = false;

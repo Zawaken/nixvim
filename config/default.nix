@@ -7,6 +7,6 @@
     ./theme.nix
   ];
 
-	extraConfigLuaPre =
-		lib.concatStringsSep "\n" [ (builtins.readFile ./util.lua) ];
+  extraConfigLuaPre =
+    lib.concatStringsSep "\n" [ (builtins.readFile ./util.lua) ];
 }
