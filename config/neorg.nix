@@ -10,9 +10,9 @@
       };
       "core.dirman" = {
         config = {
+          default_workspace = "notes";
           workspaces = {
-            home = "~/notes/home";
-            work = "~/notes/work";
+            notes = "~/.notes/notes";
           };
         };
       };

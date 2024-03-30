@@ -28,5 +28,9 @@
       key = "<leader>e";
       action = "<CMD>lua MiniFiles.open()<CR>";
     }
+    {
+      key = "<leader>i";
+      action = "<CMD>Neorg index<CR>";
+    }
   ];
 }
