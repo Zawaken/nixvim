@@ -2,7 +2,6 @@
 let
   plugins = [
     "nix"
-    "telescope"
     "presence-nvim"
     "which-key"
     "trouble"
@@ -19,6 +18,7 @@ in {
     ./mini.nix
     ./neorg.nix
     ./noice.nix
+    ./telescope.nix
     ./treesitter.nix
   ];
 
