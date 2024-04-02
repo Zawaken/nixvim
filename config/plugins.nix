@@ -31,5 +31,7 @@ in {
     nvim-web-devicons
     nui-nvim
     vim-sleuth
+
+    yuck-vim
   ];
 }
