@@ -10,6 +10,11 @@
       pattern = [ "*" ];
       command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o";
     }
+    { # Set filetype to C for ZMK keymap files
+      event =   [ "BufNewFile" "BufRead" ];
+      pattern = [ "*.keymap" ];
+      command = "setfiletype c";
+    }
     # {
     #   event = [ "BufReadPost" ];
     #   pattern = [ "*" ];
