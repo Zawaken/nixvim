@@ -17,6 +17,7 @@ in {
     ./mini.nix
     ./neorg.nix
     ./noice.nix
+    ./notify.nix
     ./telescope.nix
     ./treesitter.nix
     ./whichkey.nix
