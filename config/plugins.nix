@@ -2,8 +2,7 @@
 let
   plugins = [
     "nix"
-    "presence-nvim"
-    "which-key"
+    "neocord"
     "trouble"
     "gitsigns"
     "intellitab"
@@ -20,6 +19,7 @@ in {
     ./noice.nix
     ./telescope.nix
     ./treesitter.nix
+    ./whichkey.nix
   ];
 
   plugins = builtins.listToAttrs (map (name: {
