@@ -1,4 +1,10 @@
 {
+  keymaps = [
+    {
+      key = "<leader>i";
+      action = "<CMD>Neorg index<CR>";
+    }
+  ];
   plugins.neorg = {
     enable = true;
     modules = {

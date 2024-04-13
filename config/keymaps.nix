@@ -7,30 +7,17 @@
     {
       key = "<leader>c";
       action = "<CMD>noh<CR>";
+      options.desc = "Clear Search Selection";
     }
     {
       key = "<leader>n";
       action= "<CMD>lua CopyMode()<CR>";
-    }
-    {
-      key = "<leader>f";
-      action = "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<CR>";
-    }
-    {
-      key = "<leader>F";
-      action = "<CMD>Telescope live_grep theme=ivy<CR>";
-    }
-    {
-      key = "<leader>b";
-      action = "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown())<CR>";
+      options.desc = "Enter CopyMode";
     }
     {
       key = "<leader>e";
       action = "<CMD>lua MiniFiles.open()<CR>";
-    }
-    {
-      key = "<leader>i";
-      action = "<CMD>Neorg index<CR>";
+      options.desc = "Open MiniFiles";
     }
   ];
 }
