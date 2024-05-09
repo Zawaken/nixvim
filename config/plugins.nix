@@ -19,6 +19,7 @@ in {
     ./noice.nix
     ./notify.nix
     ./obsidian.nix
+    ./qmk.nix
     ./telescope.nix
     ./treesitter.nix
     ./whichkey.nix
