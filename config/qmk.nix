@@ -18,7 +18,7 @@
   };
   autoCmd = [
     { # planck keymap
-      # group = "Qmk";
+      group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*planck/keymap.c" ];
       callback = { __raw = "function() require('qmk').setup({
@@ -31,7 +31,7 @@
                     }}) end"; };
     }
     {
-      # group = "Qmk";
+      group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*framework/keymap.c" ];
       callback = { __raw = "function() require('qmk').setup({
@@ -45,7 +45,7 @@
                     }}) end"; };
     }
     {
-      # group = "Qmk";
+      group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*air40/keymap.c" ];
       callback = { __raw = "function() require('qmk').setup({
