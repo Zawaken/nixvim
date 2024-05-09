@@ -40,31 +40,31 @@ in {
       group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*preonic/keymap.c" ];
-      callback = createKeyboardCallback "LAYOUT_preonic_grid" (generateLayout 5 12);
+      callback = createKeyboardCallback ["LAYOUT_preonic_grid" (generateLayout 5 12) ];
     }
     { # planck keymap
       group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*planck/keymap.c" ];
-      callback = createKeyboardCallback "LAYOUT_planck_grid" (generateLayout 4 12);
+      callback = createKeyboardCallback [ "LAYOUT_planck_grid" (generateLayout 4 12) ];
     }
     { # framework/ortho_5x12 keymap
       group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*framework/keymap.c" ];
-      callback = createKeyboardCallback "LAYOUT_ortho_5x12" (generateLayout 5 12);
+      callback = createKeyboardCallback [ "LAYOUT_ortho_5x12" (generateLayout 5 12) ];
     }
     { # Air40/ortho_4x12 layout
       group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*air40/keymap.c" ];
-      callback = createKeyboardCallback "LAYOUT_ortho_4x12" (generateLayout 4 12);
+      callback = createKeyboardCallback [ "LAYOUT_ortho_4x12" (generateLayout 4 12) ];
     }
-    { # Blank space layout, currently doesn't work
+    { # Blank space layout
       group = "Qmk";
       event = [ "BufEnter" ];
       pattern = [ "*.keymap" ];
-      callback = createKeyboardCallback "meh" (generateLayout 4 12) "zmk";
+      callback = createKeyboardCallback [ "meh" (generateLayout 4 12) "zmk" ];
     }
     { # Boardsource Lulu layout
       group = "Qmk";
