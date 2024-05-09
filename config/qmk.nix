@@ -1,5 +1,13 @@
 { lib, ...}:
-let ortho5x12 = [
+let ortho4x12 = [
+  "x x x x x x x x x x x x"
+  "x x x x x x x x x x x x"
+  "x x x x x x x x x x x x"
+  "x x x x x x x x x x x x"
+];
+ortho4x12LayoutString = lib.strings.concatMapStringsSep ",\n" (s: "'${s}'") ortho4x12;
+
+ortho5x12 = [
   "x x x x x x x x x x x x"
   "x x x x x x x x x x x x"
   "x x x x x x x x x x x x"
@@ -7,13 +15,7 @@ let ortho5x12 = [
   "x x x x x x x x x x x x"
 ];
 ortho5x12LayoutString = lib.strings.concatMapStringsSep ",\n" (s: "'${s}'") ortho5x12;
-ortho4x12 = [
-  "x x x x x x x x x x x x"
-  "x x x x x x x x x x x x"
-  "x x x x x x x x x x x x"
-  "x x x x x x x x x x x x"
-];
-ortho4x12LayoutString = lib.strings.concatMapStringsSep ",\n" (s: "'${s}'") ortho4x12;
+
 in {
   plugins.qmk = {
     enable = true;
