@@ -15,11 +15,10 @@
       pattern = [ "*.keymap" ];
       command = "setfiletype c";
     }
-    # {
-    #   event = [ "BufReadPost" ];
-    #   pattern = [ "*" ];
-    #   # command = [ "if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif" ];
-    #   command = "if line(\"'\"\") > 1 && line(\"'\"\") <= line(\"$\") | exe \"normal! g'\"\" | endif";
-    # }
+    { # Remember what line I last closed neovim on
+      event = [ "BufReadPost" ];
+      pattern = [ "*" ];
+      command = ''if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif'';
+    }
   ];
 }
