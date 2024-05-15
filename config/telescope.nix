@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, helpers, ... }:
 {
   plugins.telescope = {
     enable = true;
@@ -15,7 +15,7 @@
     settings = {
       defaults.mappings = {
         i = {
-          "<esc>".__raw = "require('telescope.actions').close";
+          "<esc>" = helpers.mkRaw "require('telescope.actions').close";
         };
       };
     };
