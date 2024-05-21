@@ -48,7 +48,7 @@ in {
     { # framework/ortho_5x12 keymap
       group = "Qmk";
       event = [ "BufEnter" ];
-      pattern = [ "*framework/keymap.c" ];
+      pattern = [ "*framework/keymap.c" "*nyquist/keymap.c" ];
       callback = createKeyboardCallback [ "LAYOUT_ortho_5x12" (generateLayout 5 12) ];
     }
     { # Air40/ortho_4x12 layout
