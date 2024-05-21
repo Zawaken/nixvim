@@ -6,6 +6,7 @@ let
     in
       lib.replicate rows row;
 
+  layoutToString = layout: lib.strings.concatMapStringsSep ",\n" (s: "'${s}'") layout;
   createKeyboardCallback = args:
     let
       name = builtins.elemAt args 0;
@@ -16,7 +17,7 @@ let
         name = '${name}',
         variant = '${variant}',
         layout = {
-          ${helpers.toLuaObject layout}
+          ${layoutToString layout}
         }
       }) end
     '';
