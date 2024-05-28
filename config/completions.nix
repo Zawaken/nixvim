@@ -1,4 +1,14 @@
-{
+{ config, lib, ... }:
+
+let
+  mkSources = sources: map (source:
+    if lib.isAttrs source then
+      source
+    else
+      { name = source; }
+  ) sources;
+
+in {
   plugins = {
     luasnip = {
       enable = true;
@@ -22,41 +32,43 @@
             border = "rounded";
           };
         };
-        sources = [
-          { name = "nvim_lsp"; }
-          { name = "luasnip"; }
-          { name = "treesitter"; }
-          { name = "path"; }
-          { name = "fuzzy-path"; }
+        sources = mkSources [
+          "nvim_lsp"
+          "luasnip"
+          "treesitter"
+          "path"
+          "fuzzy-path"
         ];
         mapping = {
-          "<CR>" = ''
-              cmp.mapping({
-                i = function(fallback)
-                  if cmp.visible() and cmp.get_active_entry() then
-                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-                  else
-                    fallback()
-                  end
-                end,
-                s = cmp.mapping.confirm({ select = true }),
-                c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-              })
-            '';
+          "<CR>" = "cmp.mapping.confirm({ select = false })";
           "<Tab>" = ''
-              cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_locally_jumpable()
-                elseif HasWordsBefore() then
-                  cmp.complete()
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_locally_jumpable()
+              elseif HasWordsBefore() then
+                cmp.complete()
+              else
+                ${if config.plugins.intellitab.enable then
+                 "vim.cmd[[silent! lua require('intellitab').indent()]]"
                 else
-                   vim.cmd[[silent! lua require("intellitab").indent()]]
-                  -- fallback()
-                end
-              end, { "i", "s" })
-            '';
+                 "fallback()"
+               }
+              end
+            end, { "i", "s" })
+          '';
+          "<S-Tab>" = ''
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
         };
       };
     };

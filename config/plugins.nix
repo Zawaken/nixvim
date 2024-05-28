@@ -15,7 +15,7 @@ in {
     ./lsp.nix
     ./lualine.nix
     ./mini.nix
-    # ./neorg.nix
+    ./neorg.nix
     ./noice.nix
     ./notify.nix
     ./obsidian.nix
