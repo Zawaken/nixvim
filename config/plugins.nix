@@ -11,7 +11,7 @@ in {
   imports = [
     ./bufferline.nix
     ./completions.nix
-    ./folds.nix
+    # ./folds.nix
     ./lsp.nix
     ./lualine.nix
     ./mini.nix
