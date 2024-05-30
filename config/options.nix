@@ -13,8 +13,7 @@
       cursorline = false;
       signcolumn = "yes";
       wrap = false;
-      foldmethod = "marker";
-      foldmarker = "{{{,}}}";
+      foldmethod = "syntax";
       list = true;
       listchars = "tab:┊»,eol:¬";
       clipboard = "unnamedplus";
