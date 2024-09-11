@@ -22,7 +22,15 @@ in {
       enable = true;
       autoEnableSources = true;
       settings = {
+        view = {
+          # docs.auto_open = false;
+          entries =
+          {
+            name = "custom";
+            selection_order = "near_cursor";
+          };
         preselect = "None";
+        performance.max_view_entries = 5;
         matching.disallowPartialFuzzyMatching = false;
         snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
         window = {
