@@ -1,8 +1,7 @@
-{ inputs, system, ... }:
+{ inputs, system, lib, ... }:
 
-let
-  lib = inputs.nixpkgs.lib;
-
+rec {
+  umport = inputs.nypkgs.lib.${system}.umport;
   # Merges a list of attributes into one, including lists and nested attributes.
   # Use this instead of lib.mkMerge if the merge type isn't allowed somewhere.
   # https://stackoverflow.com/a/54505212
@@ -20,12 +19,7 @@ let
             lib.last values);
     in merge [ ] attrs;
 
-in with inputs; deepMerge [
-  lib
-  utils.lib
-  nixvim.lib.${system}
 
-  {
     luaToViml = s: let
       lines = lib.splitString "\n" s;
       nonEmptyLines = builtins.filter (line: line != "") lines;
@@ -34,6 +28,14 @@ in with inputs; deepMerge [
       lib.concatStringsSep "\n" processed;
 
     joinViml = s:
-      lib.concatStringsSep " | " (lib.filter (line: line != "") (lib.splitString "\n" s));
-  }
-]
+      lib.concatStringsSep " | "
+      (lib.filter (line: line != "") (lib.splitString "\n" s));
+
+    fill = value: elems:
+      lib.foldl' (acc: elem:
+        acc // lib.setAttrByPath (if builtins.isList elem then elem else [elem])
+        value) { } elems;
+
+    enable = elems: fill { enable = true; } elems;
+    disable = elems: fill { enable = false; } elems;
+}

@@ -1,37 +1,42 @@
-{ pkgs, ... }:
-let
-  plugins = [
+{ utils, pkgs, ... }:
+# let
+#   plugins = [
+#
+#   ];
+# in
+{
+  modules = utils.enable [
+    [ "colorscheme" "tokyonight"]
+    "bufferline"
+    "cmp"
+    "folds"
+    "lsp"
+    "lualine"
+    "mini"
+    "neorg"
+    "noice"
+    "notify"
+    "obsidian"
+    "qmk"
+    "telescope"
+    "treesitter"
+    "whichkey"
+  ];
+  plugins = utils.enable [
     "nix"
     "neocord"
     "trouble"
     "gitsigns"
     "intellitab"
-  ];
-in {
-  imports = [
-    ./bufferline.nix
-    ./completions.nix
-    # ./folds.nix
-    ./lsp.nix
-    ./lualine.nix
-    ./mini.nix
-    ./neorg.nix
-    ./noice.nix
-    ./notify.nix
-    ./obsidian.nix
-    ./qmk.nix
-    ./telescope.nix
-    ./treesitter.nix
-    ./whichkey.nix
+    "web-devicons"
   ];
 
-  plugins = builtins.listToAttrs (map (name: {
-    name = name;
-    value = { enable = true; };
-  }) plugins);
+  # plugins = builtins.listToAttrs (map (name: {
+  #   name = name;
+  #   value = { enable = true; };
+  # }) plugins);
 
   extraPlugins = with pkgs.vimPlugins; [
-    nvim-web-devicons
     nui-nvim
     vim-sleuth
 
