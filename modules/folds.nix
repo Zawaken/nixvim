@@ -1,12 +1,12 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, utils, ... }:
 {
   options.modules.folds.enable = lib.mkEnableOption "folds";
 
   config = lib.mkIf config.modules.folds.enable {
     extraPlugins = [{
       plugin = pkgs.vimPlugins.pretty-fold-nvim;
-      config = ''
-        lua require("pretty-fold").setup({
+      config = utils.luaToViml ''
+        require("pretty-fold").setup({
           keep_indentation = false,
           fill_char = ' ',
           sections = {
@@ -15,8 +15,8 @@
             },
             right = {
               '{ ', 'number_of_folded_lines', ' }  ',
-            }
-          }
+            },
+          },
         })
       '';
     }];
