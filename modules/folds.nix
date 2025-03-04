@@ -4,7 +4,7 @@
 
   config = lib.mkIf config.modules.folds.enable {
     extraPlugins = [{
-      plugin = pkgs.vimPlugins.pretty-fold-nvim;
+      plugin = pkgs.vimPlugins.pretty-fold;
       config = utils.luaToViml ''
         require("pretty-fold").setup({
           keep_indentation = false,

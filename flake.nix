@@ -22,7 +22,9 @@
         };
         # Needed to make neorg work after upgrade to 8.0.0 https://github.com/nix-community/nixvim/issues/1395
         # overlays = [ neorg.overlays.default ];
-        overlays = [ ];
+        overlays = [
+          (import ./packages.nix)
+        ];
         pkgs = import nixpkgs {
           inherit system overlays;
         };
