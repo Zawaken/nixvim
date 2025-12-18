@@ -13,13 +13,8 @@ in {
 
   config = lib.mkIf config.modules.cmp.enable {
     plugins = {
-      luasnip = {
-        enable = true;
-        settings = {
-          enable_autosnippets = false;
-          store_selection_keys = "<Tab>";
-        };
-      };
+      luasnip.enable = true;
+      friendly-snippets.enable = true;
 
       cmp = {
         enable = true;
