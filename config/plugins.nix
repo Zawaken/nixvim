@@ -1,11 +1,12 @@
-{ utils, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 # let
 #   plugins = [
 #
 #   ];
 # in
 {
-  modules = utils.enable [
+  config = {
+  modules = lib.enable [
     [ "colorscheme" "tokyonight"]
     "bufferline"
     "cmp"
@@ -22,7 +23,7 @@
     "treesitter"
     "whichkey"
   ];
-  plugins = utils.enable [
+  plugins = lib.enable [
     "nix"
     "neocord"
     "trouble"
@@ -42,4 +43,5 @@
 
     yuck-vim
   ];
+  };
 }

@@ -1,8 +1,6 @@
 {
   config = {
     opts = {
-      number = true;
-      relativenumber = true;
       backup = false;
       swapfile = false;
       undofile = true;
@@ -14,8 +12,14 @@
       signcolumn = "yes";
       wrap = false;
       foldmethod = "syntax";
+
+      number = true;
+      relativenumber = true;
       list = true;
-      listchars = "tab:┊»,eol:¬";
+      listchars = {
+        tab = ":┊»";
+        eol = "¬";
+      };
       clipboard = "unnamedplus";
       splitbelow = true;
       splitright = true;

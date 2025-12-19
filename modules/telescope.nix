@@ -3,22 +3,30 @@
   options.modules.telescope.enable = lib.mkEnableOption "telescope";
 
   config = lib.mkIf config.modules.telescope.enable {
-    plugins.telescope = {
-      enable = true;
-      extensions = {
-        ui-select.enable = true;
-        fzy-native = {
-          enable = true;
-          settings = {
-            override_file_sorter = true;
-            override_generic_sorter = true;
+    plugins = {
+      telescope = {
+        enable = true;
+        extensions = {
+          ui-select.enable = true;
+          fzy-native = {
+            enable = true;
+            settings = {
+              override_file_sorter = true;
+              override_generic_sorter = true;
+            };
           };
         };
-      };
-      settings = {
-        defaults.mappings = {
-          i = {
-            "<esc>" = helpers.mkRaw "require('telescope.actions').close";
+        settings.defaults = {
+          mappings = {
+            i = {
+              "<esc>" = helpers.mkRaw "require('telescope.actions').close";
+              "<C-h>" = "which_key";
+            };
+          };
+        };
+        extensions = {
+          frecency = {
+            enable = true;
           };
         };
       };
