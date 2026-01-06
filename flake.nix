@@ -2,28 +2,31 @@
   description = "Personal Nvim config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    nixvim.url = "github:nix-community/nixvim";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixlib = {
       url = "github:runarsf/nixlib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # neorg.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+
     nypkgs = {
       url = "github:yunfachi/nypkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs = inputs@{ nixpkgs, nixvim, nixlib, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
+  outputs = inputs @ { self, nixpkgs, flake-utils, treefmt-nix, nixlib, nixvim, ... }:
+    flake-utils.lib.eachDefaultSystem (
+      system: let
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-          overlays = (f: import f {inherit inputs;}) (lib.concatPaths {paths = ./overlays;});
+          overlays = map (f: import f {inherit inputs;}) (lib.concatPaths {paths = ./overlays;});
         };
         lib'' = nixpkgs.lib.extend (_: _: {inherit utils;});
         lib' = lib''.extend nixvim.lib.overlay;
@@ -32,8 +35,14 @@
           nixlib.lib
         ];
         utils = import ./utils {
-          inherit inputs system pkgs lib;
+          inherit
+            inputs
+            system
+            pkgs
+            lib
+            ;
         };
+        treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
         config = {
           inherit pkgs;
 
@@ -49,14 +58,12 @@
               ];
             };
           };
+
           extraSpecialArgs = {
             inherit inputs lib;
           };
         };
       in {
-        checks = {
-          default = nixvim.lib.check.mkTestDerivationFromNvim config;
-        };
         packages = rec {
           default = nixvim.legacyPackages.${system}.makeNixvimWithModule config;
           nvim = default;
@@ -68,6 +75,13 @@
             nix flake update
           '';
         };
-        formatter = pkgs.nixfmt;
-      });
+
+        checks = {
+          default = nixvim.lib.${system}.check.mkTestDerivationFromNvim config;
+          formatting = treefmtEval.config.build.check self;
+        };
+
+        formatter = treefmtEval.config.build.wrapper;
+      }
+    );
 }

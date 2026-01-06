@@ -16,11 +16,6 @@
           "core.defaults" = {
             __empty = null;
           };
-          "core.completion" = {
-            config = {
-              engine = "nvim-cmp";
-            };
-          };
           "core.concealer" = {
             __empty = null;
           };

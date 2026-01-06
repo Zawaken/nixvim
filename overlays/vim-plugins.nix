@@ -11,5 +11,15 @@ _: _: super: {
           hash = "sha256-0cHPm+JPGoYsjJEg3eIWv2Td1S+LQYBRbp71XPQsWMg=";
         };
       };
+      search = super.vimUtils.buildVimPlugin {
+        name = "search.nvim";
+        src = super.fetchFromGitHub {
+            owner = "FabianWirth";
+            repo = "search.nvim";
+            rev = "7b8f2315d031be73e14bc2d82386dfac15952614";
+            hash = "sha256-88rMEtHTk5jEQ00YleSr8x32Q3m0VFZdxSE2vQ+f0rM=";
+        };
+        doCheck = false;
+      };
     };
 }

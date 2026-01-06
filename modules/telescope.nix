@@ -33,16 +33,7 @@
     };
     extraPlugins = with pkgs.vimPlugins; [
       {
-        plugin = (pkgs.vimUtils.buildVimPlugin {
-          name = "search.nvim";
-          src = pkgs.fetchFromGitHub {
-              owner = "FabianWirth";
-              repo = "search.nvim";
-              rev = "7b8f2315d031be73e14bc2d82386dfac15952614";
-              hash = "sha256-88rMEtHTk5jEQ00YleSr8x32Q3m0VFZdxSE2vQ+f0rM=";
-          };
-          doCheck = false;
-        });
+        plugin = search;
         config = ''
           lua builtin = require('telescope.builtin')
           lua require("search").setup({
@@ -57,22 +48,22 @@
       }
     ];
 
-    keymaps = [
-      {
-        key = "<leader>f";
-        action = "<cmd>lua require'search'.open()<CR>";
-        options.desc = "Search.nvim";
-      }
-      {
-        key = "<leader>F";
-        action = "<CMD>Telescope live_grep theme=ivy<CR>";
-        options.desc = "Telescope Live Grep Ivy";
-      }
-      {
-        key = "<leader>b";
-        action = "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown())<CR>";
-        options.desc = "Telescope Bufferlist Dropdown";
-      }
+    keymaps = with lib.utils.keymaps; [
+      (mkKeymap' "<leader>f" (helpers.mkRaw ''
+        function()
+          require('search').open()
+        end
+      '') "Find Files")
+      (mkKeymap' "<leader>F" (helpers.mkRaw ''
+        function()
+          require('telescope.builtin').live_grep({ theme=ivy })
+        end
+      '') "Live Grep")
+      (mkKeymap' "<leader>b" (helpers.mkRaw ''
+        function()
+          require('telescope.builtin').buffers(require('telescope.themes').get_dropdown())
+        end
+      '') "Bufferlist")
     ];
   };
 }

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, helpers, ... }:
 {
   options.modules.mini.enable = lib.mkEnableOption "mini";
 
@@ -17,5 +17,15 @@
         };
       };
     };
+    keymaps = with lib.utils.keymaps; [
+      (mkKeymap' "<leader>e" (helpers.mkRaw ''
+        function()
+          local files = require('mini.files')
+          if not files.close() then
+            files.open(files.get_latest_path())
+          end
+        end
+      '') "File Browser")
+    ];
   };
 }

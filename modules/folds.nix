@@ -3,8 +3,8 @@
   options.modules.folds.enable = lib.mkEnableOption "folds";
 
   config = lib.mkIf config.modules.folds.enable {
-    extraPlugins = [{
-      plugin = pkgs.vimPlugins.pretty-fold;
+    extraPlugins = with pkgs.vimPlugins; [{
+      plugin = pretty-fold;
       config = lib.utils.viml.fromLua ''
         require("pretty-fold").setup({
           keep_indentation = false,
