@@ -20,5 +20,16 @@
       pattern = [ "*" ];
       command = ''if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif'';
     }
+    {
+      event = [ "FileType" ];
+      pattern = [ "norg" "neorg" ];
+      callback = { __raw = ''
+      function() 
+        if pcall(vim.treesitter.start) then 
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" 
+          vim.bo.indentexpr = "vi:lua.require'nvim-treesitter'.indentexpr()" 
+        end
+      end'';};
+    }
   ];
 }

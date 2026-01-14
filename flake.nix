@@ -19,8 +19,9 @@
       url = "github:yunfachi/nypkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neorg.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
-  outputs = inputs @ { self, nixpkgs, flake-utils, treefmt-nix, nixlib, nixvim, ... }:
+  outputs = inputs @ { self, nixpkgs, flake-utils, treefmt-nix, nixlib, nixvim, neorg, ... }:
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {
