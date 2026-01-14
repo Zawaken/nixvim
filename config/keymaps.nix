@@ -5,6 +5,6 @@
   };
   keymaps = with lib.utils.keymaps; [
     (mkKeymap' "<leader>c" "<CMD>nohlsearch<CR>" "Clear Search Selection")
-    (mkKeymap' "<leader>n" "<CMD>lua CopyMode()<CR>" "Enter CopyMode")
+    (mkKeymap' "<leader>n" "<CMD>CopyMode()<CR>" "Enter CopyMode")
   ];
 }

@@ -12,7 +12,6 @@
     plugins = {
       neorg = {
         enable = true;
-        package = pkgs.vimPlugins.neorg;
         settings = {
           load = {
             "core.defaults" = {
