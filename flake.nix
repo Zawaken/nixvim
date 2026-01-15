@@ -27,7 +27,7 @@
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-          overlays = map (f: import f {inherit inputs;}) (lib.concatPaths {paths = ./overlays;});
+          overlays = [ neorg.overlays.default] ++ map (f: import f {inherit inputs;}) (lib.concatPaths {paths = ./overlays;});
         };
         lib'' = nixpkgs.lib.extend (_: _: {inherit utils;});
         lib' = lib''.extend nixvim.lib.overlay;
