@@ -12,7 +12,6 @@
     plugins = {
       neorg = {
         enable = true;
-        package = pkgs.vimPlugins.neorg;
         settings = {
           load = {
             "core.defaults" = {
@@ -34,6 +33,6 @@
       };
       treesitter.grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars ++ [ pkgs.vimPlugins.treesitter-neorg-grammar ];
     };
-    extraPlugins = with pkgs.vimPlugins; [ treesitter-neorg-grammar ];
+    # extraPlugins = with pkgs.vimPlugins; [ treesitter-neorg-grammar ];
   };
 }
