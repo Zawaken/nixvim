@@ -5,9 +5,7 @@
   ...
 }:
 
-# TODO https://github.com/kaplanelad/shellfirm
-
-lib.utils.mkLanguageModule config "shell" {
+lib.utils.mkLanguageModule config "yaml" {
   plugins = {
     lsp.servers = {
       yamlls.enable = true;
