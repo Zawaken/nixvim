@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ inputs, config, lib, pkgs, ... }:
 lib.utils.mkLanguageModule config "nix" {
   plugins = {
     hmts.enable = true;
