@@ -28,8 +28,8 @@
     plugins = {
       dap = {
         enable = true;
-        extensions.dap-ui.enable = true;
       };
+      dap-ui.enable = true;
       cmp.settings.sources = [
         { name = "dap"; }
       ];

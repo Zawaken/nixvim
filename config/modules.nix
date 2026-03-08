@@ -49,6 +49,7 @@
       "bufferline"
       "completions"
       "folds"
+      "dap"
       "lsp"
       "lualine"
       "mini"
@@ -60,7 +61,12 @@
       "telescope"
       "treesitter"
       "whichkey"
-    ];
+    ]
+      // {
+        languages = {
+          all.enable = true;
+        };
+      };
     plugins = lib.enable [
       "nix"
       "neocord"

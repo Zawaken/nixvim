@@ -1,18 +1,35 @@
 { config, lib, ... }:
 {
-  options.modules.treesitter.enable = lib.mkEnableOption "treesitter";
-
+options.modules.treesitter.enable = lib.mkEnableOption "treesitter";
   config = lib.mkIf config.modules.treesitter.enable {
-    plugins.treesitter = {
-      enable = true;
-      settings = {
-        highlight = {
-          enable = true;
-          additional_vim_regex_highlighting = false;
+
+    extraConfigLuaPost = ''
+      -- Prevent LSP from overwriting treesitter color settings
+      -- https://github.com/NvChad/NvChad/issues/1907
+      vim.highlight.priorities.semantic_tokens = 95
+    '';
+    plugins = {
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight = {
+            enable = true;
+            additional_vim_regex_highlighting = false;
+          };
+          folding.enable = true;
         };
-        indent.enable = true;
-        folding.enable = true;
       };
+      treesitter-context = {
+        enable = true;
+        settings = {
+          line_numbers = true;
+          max_lines = 3;
+          trim_scope = "outer";
+          min_window_height = 25;
+          multiline_threshold = 1;
+        };
+      };
+      treesitter-textobjects.enable = true;
     };
   };
 }

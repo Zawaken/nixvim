@@ -4,11 +4,12 @@
 
   config = lib.mkIf config.modules.lsp.enable {
     plugins = {
-      lspkind.enable = true;
+      # lspkind.enable = true;
       lsp = {
         enable = true;
         inlayHints = true;
         # servers = {
+          # gopls.enable = true;
         #   bashls.enable = true;
         #   clangd.enable = true;
         #   cssls.enable = true;
