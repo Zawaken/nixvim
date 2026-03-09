@@ -6,6 +6,9 @@ lib.mkModule config "lsp"{
       enable = true;
       inlayHints = true;
     };
+    tiny-inline-diagnostic = {
+      enable = true;
+    };
   };
   keymaps = with lib.utils.keymaps; [
   (mkKeymap ["i" "n"] "<C-." (lib.nixvim.mkRaw ''
@@ -48,5 +51,11 @@ lib.mkModule config "lsp"{
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end
   '') "Toggle inlay hints")
+  (mkKeymap ["n"] "<leader>dt" (lib.nixvim.mkRaw ''
+    function()
+      local new_config = not vim.diagnostic.config().virtual_text
+      vim.diagnostic.config({ virtual_text = new_config})
+    end
+    '') "Toggle virtual text")
   ];
 }
