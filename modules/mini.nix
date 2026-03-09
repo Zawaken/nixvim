@@ -1,4 +1,4 @@
-{ config, lib, helpers, ... }:
+{ config, lib, ... }:
 {
   options.modules.mini.enable = lib.mkEnableOption "mini";
 
@@ -18,7 +18,7 @@
       };
     };
     keymaps = with lib.utils.keymaps; [
-      (mkKeymap' "<leader>e" (helpers.mkRaw ''
+      (mkKeymap' "<leader>e" (lib.nixvim.mkRaw ''
         function()
           local files = require('mini.files')
           if not files.close() then

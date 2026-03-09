@@ -1,4 +1,4 @@
-{ config, lib, helpers, ...}:
+{ config, lib, ...}:
 let
   generateLayout = rows: cols:
     let
@@ -12,7 +12,7 @@ let
       name = builtins.elemAt args 0;
       layout = builtins.elemAt args 1;
       variant = if builtins.length args > 2 then builtins.elemAt args 2 else "qmk";
-    in  helpers.mkRaw ''
+    in  lib.nixvim.mkRaw ''
       function() require('qmk').setup({
         name = '${name}',
         variant = '${variant}',
@@ -71,7 +71,7 @@ in {
         group = "Qmk";
         event = [ "BufEnter" ];
         pattern = [ "*lulu/keymap.c" ];
-        callback = helpers.mkRaw
+        callback = lib.nixvim.mkRaw
                     "function() require('qmk').setup({
                       name = 'LAYOUT',
                       layout = {

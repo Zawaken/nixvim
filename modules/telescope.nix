@@ -1,4 +1,4 @@
-{ config, lib, pkgs, helpers, ... }:
+{ config, lib, pkgs, ... }:
 {
   options.modules.telescope.enable = lib.mkEnableOption "telescope";
 
@@ -19,7 +19,7 @@
         settings.defaults = {
           mappings = {
             i = {
-              "<esc>" = helpers.mkRaw "require('telescope.actions').close";
+              "<esc>" = lib.nixvim.mkRaw "require('telescope.actions').close";
               "<C-h>" = "which_key";
             };
           };
@@ -49,17 +49,17 @@
     ];
 
     keymaps = with lib.utils.keymaps; [
-      (mkKeymap' "<leader>f" (helpers.mkRaw ''
+      (mkKeymap' "<leader>f" (lib.nixvim.mkRaw ''
         function()
           require('search').open()
         end
       '') "Find Files")
-      (mkKeymap' "<leader>F" (helpers.mkRaw ''
+      (mkKeymap' "<leader>F" (lib.nixvim.mkRaw ''
         function()
           require('telescope.builtin').live_grep({ theme=ivy })
         end
       '') "Live Grep")
-      (mkKeymap' "<leader>b" (helpers.mkRaw ''
+      (mkKeymap' "<leader>b" (lib.nixvim.mkRaw ''
         function()
           require('telescope.builtin').buffers(require('telescope.themes').get_dropdown())
         end
