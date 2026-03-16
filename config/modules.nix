@@ -54,13 +54,15 @@
       "lualine"
       "mini"
       "neorg"
-      "noice"
-      "notify"
+      "ui"
       "obsidian"
       "qmk"
+      "snacks"
       "telescope"
+      "terminal"
       "treesitter"
       "whichkey"
+      "zen"
     ]
       // {
         languages = {
@@ -82,7 +84,6 @@
     # }) plugins);
 
     extraPlugins = with pkgs.vimPlugins; [
-      nui-nvim
       vim-sleuth
 
       yuck-vim
