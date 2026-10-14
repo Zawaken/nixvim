@@ -1,7 +1,7 @@
 { inputs, config, lib, pkgs, ... }:
 lib.utils.mkLanguageModule config "nix" {
   plugins = {
-    hmts.enable = true;
+    # hmts.enable = true;
 
     lsp.servers = {
       statix.enable = true;
